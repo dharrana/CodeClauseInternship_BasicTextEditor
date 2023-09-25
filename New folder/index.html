@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        
+        }
+        textarea {
+            width: 800px;
+            height: 190px;
+            padding: 10px;
+            font-size: 16px;
+            box-shadow: 10px 10px 20px gray;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .btn{
+            background-color: rgb(0, 96, 0);
+            color: white;
+            cursor: pointer;
+            border-radius: 40px;
+            border: none;
+        }
+        .btn:hover{
+            background-color: rgb(85, 160, 85);
+        }
+        #characterCount{
+            margin-top: 10px;
+            color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <h1>Text Editor</h1>
+    <textarea id="textInput" oninput="updateCharacterCount()"></textarea><br><br>
+    <button class="btn" onclick="convertToUpperCase()">Convert to Uppercase</button>
+    <button class="btn" onclick="convertToLowerCase()">Convert to Lowercase</button>
+    <button class="btn" onclick="clearText()">Clear Text</button>
+    <button class="btn" onclick="copyText()">Copy Text</button>
+    <div id="characterCount">Character Count: 0</div>
+
+    <script>
+        function updateCharacterCount() {
+            var input = document.getElementById("textInput");
+            var characterCount = input.value.length;
+            var countElement = document.getElementById("characterCount");
+            countElement.textContent = "Character Count: " + characterCount;
+        }
+
+        function convertToUpperCase() {
+            var input = document.getElementById("textInput");
+            input.value = input.value.toUpperCase();
+            updateCharacterCount();
+        }
+
+        function convertToLowerCase() {
+            var input = document.getElementById("textInput");
+            input.value = input.value.toLowerCase();
+            updateCharacterCount();
+        }
+
+        function clearText() {
+            var input = document.getElementById("textInput");
+            input.value = "";
+            updateCharacterCount();
+        }
+
+        function copyText() {
+            var input = document.getElementById("textInput");
+            input.select();
+            document.execCommand("copy");
+            alert("Text copied!");
+        }
+    </script>
+</body>
+</html>
